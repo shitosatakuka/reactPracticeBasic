@@ -16,7 +16,8 @@ const App = () => {
       {/* スタイルを当てるときに直接書くことができる。{{''}}の形で書く */}
       <h1 style={{ color: "red" }}>Hello World!</h1>
       <p style={contentStyle}>おげんきですか？</p>
-      <ColorfulMessage />
+      {/* ↓コンポーネント化してprops名をつける。これでコンポーネントに情報を渡せる */}
+      <ColorfulMessage color="blue" message="お元気ですか？" />
       {/* ボタンをつける。動作を指定するときに関数書き込む */}
       <button onClick={onClickButton}>ボタン</button>
     </>
