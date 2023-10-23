@@ -2,12 +2,18 @@ import React from "react";
 
 const App = () => {
   const onClickButton = () => alert();
+  // cssのスタイルを関数として充てることもできる。書く時は必ずキャメルケースで。 font-sizeではなく、fontSize
+  const contentStyle = {
+    color: "blue",
+    fontSize: "18px",
+  };
   return (
     // JSXは必ず一つのタグで囲わないといけないので、タグで囲ってあげる。ただし、不要なタグも生成されてしまうので、<React.Fragment></React.Fragment>で囲う
     // 空のタグで囲うことでも問題なく動作する<></>
     <>
-      <h1>Hello World!</h1>
-      <p>おげんきですか？</p>
+      {/* スタイルを当てるときに直接書くことができる。{{''}}の形で書く */}
+      <h1 style={{ color: "red" }}>Hello World!</h1>
+      <p style={contentStyle}>おげんきですか？</p>
       {/* ボタンをつける。動作を指定するときに関数書き込む */}
       <button onClick={onClickButton}>ボタン</button>
     </>
