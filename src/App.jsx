@@ -1,4 +1,5 @@
 import React from "react";
+import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
   const onClickButton = () => alert();
@@ -15,7 +16,7 @@ const App = () => {
       {/* スタイルを当てるときに直接書くことができる。{{''}}の形で書く */}
       <h1 style={{ color: "red" }}>Hello World!</h1>
       <p style={contentStyle}>おげんきですか？</p>
-      
+      <ColorfulMessage />
       {/* ボタンをつける。動作を指定するときに関数書き込む */}
       <button onClick={onClickButton}>ボタン</button>
     </>
