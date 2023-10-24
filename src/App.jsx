@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
+  // stateの使い方。const[引き数名、関数名]のような形で書く。useState()の中は初期値になる。
+  const [num, setNum] = useState(0);
+  // ボタンを押すと表示、非表示を切り替える。ONOFFなのでブーリアン値を入れておく。
+  const [faceShowFlag, setFaceShowFlag] = useState(false);
+
   const onClickCountUp = () => {
     // setNum()に10000と入れれば、ボタンを押した後に10000に変更される。
     // setNum(10000);
     setNum(num + 1);
   };
+  const onClickSwitchShowFlag = () => {
+    // faceShowFlagを切り替えるので、初期状態から反対の状態にするので"!"を設定しないといけない
+    setFaceShowFlag(!faceShowFlag);
+  };
   // cssのスタイルを関数として充てることもできる。書く時は必ずキャメルケースで。 font-sizeではなく、fontSize
-  // stateの使い方。const[引き数名、関数名]のような形で書く。useState()の中は初期値になる。
-  const [num, setNum] = useState(0);
   const contentStyle = {
     color: "blue",
     fontSize: "18px",
@@ -31,6 +38,9 @@ const App = () => {
       {/* ボタンをつける。動作を指定するときに関数書き込む */}
       <button onClick={onClickCountUp}>カウントアップ</button>
       <p>{num}</p>
+      <button onClick={onClickSwitchShowFlag}>on/off</button>
+      {/* ↓ ”＆＆”はfaceShowFlagがtrueの場合右側の値を返すということ　 */}
+      {faceShowFlag && <p>(゜Д゜)</p>}
     </>
   );
 };
