@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
-  const onClickButton = () => alert();
+  const onClickCountUp = () => {
+    // setNum()に10000と入れれば、ボタンを押した後に10000に変更される。
+    // setNum(10000);
+    setNum(num + 1);
+  };
   // cssのスタイルを関数として充てることもできる。書く時は必ずキャメルケースで。 font-sizeではなく、fontSize
-
+  // stateの使い方。const[引き数名、関数名]のような形で書く。useState()の中は初期値になる。
+  const [num, setNum] = useState(0);
   const contentStyle = {
     color: "blue",
     fontSize: "18px",
@@ -24,7 +29,8 @@ const App = () => {
       {/* ↓propsで指定する書き方 */}
       <ColorfulMessage color="blue" message="お元気ですか？" />
       {/* ボタンをつける。動作を指定するときに関数書き込む */}
-      <button onClick={onClickButton}>ボタン</button>
+      <button onClick={onClickCountUp}>カウントアップ</button>
+      <p>{num}</p>
     </>
   );
 };
