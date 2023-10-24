@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
@@ -18,17 +18,29 @@ const App = () => {
     setFaceShowFlag(!faceShowFlag);
   };
 
-  // numの値が3の倍数の時に顔が出てくる！しかし、このままだとエラーが出る。再レンダリングがループのように発生してしまう。
-  if (num % 3 === 0) {
-    //   setFaceShowFlag(true);
-    // } else {
-    //   setFaceShowFlag(false);
-    // エラーの出ない処理を書く
-    // "||"は左の処理がfalseの時に右側の処理をする。
-    faceShowFlag || setFaceShowFlag(true);
-  } else {
-    faceShowFlag && setFaceShowFlag(false);
-  }
+  // FaceShowFlagを使って、ifでstateを処理すると干渉し合ってonoffのボタンが効かなくなる。そんなときにuseEffectを利用する
+  // useEffectも最初から通る.useEffectは第二引数を取ることができる。
+  useEffect(() => {
+    // console.log("useEffect");
+    // numの値が3の倍数の時に顔が出てくる！しかし、このままだとエラーが出る。再レンダリングがループのように発生してしまう。
+    if (num % 3 === 0) {
+      faceShowFlag || setFaceShowFlag(true);
+    } else {
+      faceShowFlag && setFaceShowFlag(false);
+    }
+  }, [num]);
+
+  // // numの値が3の倍数の時に顔が出てくる！しかし、このままだとエラーが出る。再レンダリングがループのように発生してしまう。
+  // if (num % 3 === 0) {
+  //   //   setFaceShowFlag(true);
+  //   // } else {
+  //   //   setFaceShowFlag(false);
+  //   // エラーの出ない処理を書く
+  //   // "||"は左の処理がfalseの時に右側の処理をする。
+  //   faceShowFlag || setFaceShowFlag(true);
+  // } else {
+  //   faceShowFlag && setFaceShowFlag(false);
+  // }
 
   // cssのスタイルを関数として充てることもできる。書く時は必ずキャメルケースで。 font-sizeではなく、fontSize
   const contentStyle = {
