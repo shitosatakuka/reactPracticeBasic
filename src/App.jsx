@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
+  console.log("最初");
   // stateの使い方。const[引き数名、関数名]のような形で書く。useState()の中は初期値になる。
   const [num, setNum] = useState(0);
   // ボタンを押すと表示、非表示を切り替える。ONOFFなのでブーリアン値を入れておく。
@@ -16,6 +17,19 @@ const App = () => {
     // faceShowFlagを切り替えるので、初期状態から反対の状態にするので"!"を設定しないといけない
     setFaceShowFlag(!faceShowFlag);
   };
+
+  // numの値が3の倍数の時に顔が出てくる！しかし、このままだとエラーが出る。再レンダリングがループのように発生してしまう。
+  if (num % 3 === 0) {
+    //   setFaceShowFlag(true);
+    // } else {
+    //   setFaceShowFlag(false);
+    // エラーの出ない処理を書く
+    // "||"は左の処理がfalseの時に右側の処理をする。
+    faceShowFlag || setFaceShowFlag(true);
+  } else {
+    faceShowFlag && setFaceShowFlag(false);
+  }
+
   // cssのスタイルを関数として充てることもできる。書く時は必ずキャメルケースで。 font-sizeではなく、fontSize
   const contentStyle = {
     color: "blue",
